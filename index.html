@@ -14,8 +14,17 @@
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- Google Model Viewer -->
-  <script type="module" src="vendor/model-viewer.min.js"></script>
+  <!-- Google Model Viewer (Official CDN with local fallback) -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+  <script type="module">
+    // Fallback if CDN is blocked
+    if (!customElements.get('model-viewer')) {
+      const s = document.createElement('script');
+      s.type = 'module';
+      s.src = 'vendor/model-viewer.min.js';
+      document.head.appendChild(s);
+    }
+  </script>
   <!-- QR Code Generator -->
   <script src="vendor/qrcode.js"></script>
 </head>
